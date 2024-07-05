@@ -1,0 +1,64 @@
+<!--begin::Tables widget 16-->
+<div class="card card-flush h-xl-100">
+	<!--begin::Header-->
+	<div class="card-header pt-5">
+		<!--begin::Title-->
+		<h3 class="card-title align-items-start flex-column">
+			<span class="card-label fw-bold text-gray-800">INSTANCIAS PERSONALIZADAS</span>
+		</h3>
+		<!--end::Title-->
+		<!--begin::Toolbar-->
+		<div class="card-toolbar">
+		</div>
+		<!--end::Toolbar-->
+	</div>
+	<!--end::Header-->
+	<!--begin::Body-->
+	<div class="card-body pt-6">
+		<!--begin::Nav-->
+		<ul class="nav nav-pills nav-pills-custom mb-3">
+			<!--begin::Item-->
+			
+			<!--end::Item-->
+			<!--begin::Item-->
+			
+		</ul>
+		<!--end::Nav-->
+		<!--begin::Tab Content-->
+		<div class="tab-content">
+			<!--begin::Tap pane-->
+			<div class="tab-pane fade show active" id="kt_stats_widget_16_tab_1">
+				<!--begin::Table container-->
+				<div class="table-responsive">
+					<!--begin::Table-->
+					<table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+						<!--begin::Table head-->
+						<thead>
+							<tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
+								<th class="p-0 pb-3 min-w-150px text-start">Listado de Empresas</th>
+								<th class="p-0 pb-3 min-w-100px text-end pe-13">URL.</th>
+								
+							</tr>
+						</thead>
+						<!--end::Table head-->
+						<!--begin::Table body-->
+						<tbody> 
+							{% for convenio in convenios %} 
+								<tr> 
+									<td><a href="{% url 'detalle_convenio' convenio.nombre %}">{{ convenio.nombre }}</a></td> 
+								</tr> 
+							{% endfor %} 
+						</tbody> 
+						<!--end::Table body-->
+					</table>
+					<!--end::Table-->
+				</div>
+				<!--end::Table container-->
+			</div>
+			
+		</div>
+		<!--end::Tab Content-->
+	</div>
+	<!--end: Card Body-->
+</div>
+<!--end::Tables widget 16-->
