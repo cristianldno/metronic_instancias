@@ -1,0 +1,20 @@
+{% extends 'layout/default.html' %}
+
+{% load i18n %}
+
+{% block title %}{% translate "Dashboard" %}{% endblock %}
+
+{% block content %}
+
+<div class="row gx-5 gx-xl-10">
+    <!--begin::Col-->
+    
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-xl-12 mb-5 mb-xl-10">
+        {% include 'partials/widgets/tables/_widget-16.html' %}
+    </div>
+    <!--end::Col-->
+</div>
+
+{% endblock content %}

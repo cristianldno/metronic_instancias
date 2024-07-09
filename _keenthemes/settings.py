@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Keenthemes Apps
     'dashboards.apps.DashboardsConfig',
     'auth.apps.AuthConfig',
+    'crear.apps.CrearConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,8 +88,12 @@ WSGI_APPLICATION = '_keenthemes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prueba_ins',
+        'USER': 'postgres',
+        'PASSWORD': 'Colombia2023**',
+        'HOST': 'localhost',  
+        'PORT': '5432',
     }
 }
 

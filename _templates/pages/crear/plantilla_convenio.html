@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instancia Dinamica</title>
+  <link href="{% static 'styles.css' %}" rel="stylesheet">
+  <link rel="icon" type="imagen" href="static/icono.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ 
+</head>
+
+
+<style>
+
+.topbar {
+    
+    color: rgb(255, 255, 255); /* Color del texto en el topbar */
+    width: 100%; /* Ocuper todo el ancho disponible */
+    padding: 10px 0; /* Espaciado interno */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    display: flex; /* Usamos flexbox para distribuir los elementos */
+    justify-content: space-between; /* Alinea los elementos al inicio y al final */
+    align-items: center; /* Centra verticalmente los elementos */
+    position: -webkit-sticky; /* Fija la posición en la parte superior */
+    top: 0; /* Alinea en la parte superior */
+    left: 0; /* Alinea a la izquierda */
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px 1px 0 #000,
+                 1px 1px 0 #000; /* Aplica sombra al texto para simular borde negro */
+    
+  }
+  .topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 0 20px; /* Agregamos un poco de espacio a los lados */
+  }
+
+#cont-principal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 1200px; /* Puedes ajustar este valor según tus necesidades */
+  }
+
+  #logo {
+    margin-right: 10px; /* Espacio entre el gif y el navbar */
+}
+
+.navbar {
+    margin-top: 10px; /* Espacio entre el gif y el navbar */
+}
+
+nav.navbar {
+    max-width: 1000px; /* Ancho máximo del elemento de navegación */
+    margin: 30px auto; /* Centra el elemento de navegación horizontalmente */
+  }
+
+  .topbar .container a {
+    color: white; /* Color del texto en los enlaces */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+  }
+
+
+  .topbar .container a.btn {
+    margin-left: auto; /* Hace que el botón "Atrás" se alinee a la derecha */
+  }
+
+  .topbar .container p {
+    font-size: 25px; /* Tamaño de letra para el párrafo */
+    margin: 0; /* Elimina el margen por defecto del párrafo */
+    
+  }
+
+  #banner-publicidad {
+    position: absolute; /* Posicionamiento absoluto */
+    text-align: center; /* Centra horizontalmente el contenido */
+    top: 220px; /* Ajusta la posición vertical */
+    left: 0; /* Ajusta la posición horizontal */
+    right: 0; /* Ajusta la posición horizontal */
+  }
+
+  #banner-publicidad img {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    height: auto; /* Ajusta automáticamente la altura según el ancho */
+  }
+
+</style>
+
+<script>
+  
+  var convenio= {
+      id: "{{ convenio.id }}",
+      nombre: "{{ convenio.nombre }}",
+      color_primario: "{{ convenio.color_primario }}",
+      
+  };
+
+  localStorage.setItem('convenio', JSON.stringify(convenio));
+
+  function cerrarSesion() {
+            localStorage.clear();
+            window.location.href = "/home";
+        }
+</script>
+
+
+<body>
+  <div class="topbar" style="background-color: {{ convenio.color_primario }};">
+    <div class="container">
+      <p>{{ convenio.nombre }}</p> 
+      <div>
+        <a href="{% url 'home' %}" class="btn btn-dark">Atrás</a>
+        <button onclick="cerrarSesion()" class="btn btn-dark">Cerrar Sesión</button>
+      </div>
+
+    </div>
+  </div>
+  <div id="cont-principal" class="container">
+    <img id="logo" src="{{ convenio.logo.url }}" alt="Logo Empresa" width="180" height="120">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item dropdown" style="{% if not certificados_con_nombre_y_formulario %}visibility: hidden;{% endif %}">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Solicitud De Certificado
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul>
+                {% for certificado in certificados_con_nombre_y_formulario %}
+                  <li><a href="/{{ certificado.formulario }}">{{ certificado.tipo_certificado }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown" style="{% if not operaciones_certificado %}visibility: hidden;{% endif %}">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Operaciones De Certificado
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul>
+                {% for operacion_cert in operaciones_certificado %}
+                  <li>{{ operacion_cert }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown" style="{% if not operaciones_firmado %}visibility: hidden;{% endif %}">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Operaciones De Firmado
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul>
+                {% for operacion_firmado in operaciones_firmado %}
+                  <li>{{ operacion_firmado }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown" style="{% if not operaciones_otp %}visibility: hidden;{% endif %}">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Operaciones OTP
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul>
+                {% for operacion_otp in operaciones_otp %}
+                  <li>{{ operacion_otp }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!--<img id="imagen_banner" src="{{ convenio.imagen_banner }}" alt="{{ convenio.nombre }} logo" >-->
+  <div id="banner-publicidad">
+    {% if convenio.imagen_banner %}
+        <img src="{{ convenio.imagen_banner.url }}" alt="{{ convenio.nombre }} banner" width="600">
+    {% else %}
+        
+    {% endif %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<footer>Carrera 27 No. 86 - 43 Bogotá, Colombia <br> PBX 7953430 -3816776 <br> <strong>AndesSCD <em class="bi bi-c-circle"></em></strong> Todos los derechos reservados </footer>
+
+<!-- Enlazar Bootstrap JS (requerido para el funcionamiento de los componentes de navegación) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+</body>
+</html>
