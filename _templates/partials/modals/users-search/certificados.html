@@ -1,0 +1,360 @@
+<div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+	<!--begin::Modal dialog-->
+	<div class="modal-dialog modal-dialog-centered mw-900px">
+		<!--begin::Modal content-->
+		<div class="modal-content rounded">
+			<!--begin::Modal header-->
+			<div class="modal-header pb-0 border-0 justify-content-end">
+				<!--begin::Close-->
+				<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">{% getIcon 'cross' 'fs-1' %}</div>
+				<!--end::Close-->
+			</div>
+			<!--begin::Modal header-->
+			<!--begin::Modal body-->
+			<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+				<!--begin:Form-->
+				<form id="kt_modal_new_target_form" class="form" action="#">
+					<!--begin::Heading-->
+					<div class="mb-13 text-start">
+						<!--begin::Title-->
+						<h1 class="mb-3">TIPOS DE CERTIFICADOS</h1>
+						<!--end::Title-->
+						<!--begin::Description-->
+						<div class="text-muted fw-semibold fs-5"> 
+						<br>
+						<!--end::Description-->
+					</div>
+					<!--end::Heading-->
+					<!--begin::Input group-->
+					<div class="d-flex flex-column mb-8 fv-row">
+
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3><label for="tipoCertificado"><strong>Selecciona tipo de Certificado:</strong></label></h3>
+                                    <select class="form-control" id="tipoCertificado">
+                                        <option value="10">Facturación Electrónica - Persona Jurídica</option>
+                                        <option value="11">Facturación Electrónica - Persona Natural</option>
+                                        <option value="6">Comunidad Académica</option>
+                                        <option value="9">Pertenencia Empresa</option>
+                                        <option value="7">Profesional Titulado</option>
+                                        <option value="8">Representante Legal</option>
+                                        <option value="12">Función Pública</option>
+                                        <option value="13">Persona Jurídica</option>
+                                        <option value="14">Función Pública para SIIF Nación</option>
+                                        <option value="5">Persona Natural</option>
+                                        <option value="15">Persona Natural Para Actividad Comercial(Rut)</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 align-self-end">
+                                        <!-- Botón para abrir el modal -->
+                                        <button type="button" class="btn btn-primary mt-4" data-toggle="modal" data-target="#certificadoModal">
+                                            Agregar
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-end align-self-end"> <!-- Utilizamos Flexbox para alinear el contenido hacia la derecha -->
+                                        <a href="{% url 'home' %}" class="btn btn-primary">Guardar</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    
+                        <!-- Modal -->
+                        <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="certificadoModalLabel">Seleccionar Tipo de Certificado</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Formulario de selección -->
+                                        <div class="form-group">
+                                            <label for="vigencia">Vigencia:</label><br>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia1" value="1">
+                                                <label class="form-check-label" for="vigencia1">1 día</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia2" value="2">
+                                                <label class="form-check-label" for="vigencia2">1 mes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia3" value="3">
+                                                <label class="form-check-label" for="vigencia3">3 meses</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia4" value="4">
+                                                <label class="form-check-label" for="vigencia4">6 meses</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia5" value="5">
+                                                <label class="form-check-label" for="vigencia5">1 año</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vigencia6" value="6">
+                                                <label class="form-check-label" for="vigencia6">2 años</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="formato">Formato de Entrega:</label><br>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="formato1" value="token_fisico">
+                                                <label class="form-check-label" for="formato1">Token Físico</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="formato2" value="token_virtual">
+                                                <label class="form-check-label" for="formato2">Token Virtual</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="formato3" value="pkcs10">
+                                                <label class="form-check-label" for="formato3">PKCS10</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary" onclick="agregarCertificado()">Guardar Certificado</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Tabla para mostrar certificados -->
+                        <div class="container mt-5">
+                            <h3><strong>Certificados seleccionados</strong></h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de Certificado</th>
+                                        <th>Vigencia</th>
+                                        <th>Formato de Entrega</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="certificadosTableBody">
+                                    <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <input type="hidden" id="id_convenio" name="id_convenio" value="{{ id_convenio }}">
+
+
+
+                        <div class="text-center">
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
+                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                <span type="submit" class="indicator-label">Enviar</span>
+                                <span class="indicator-progress">Please wait... 
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <script>
+        // Función para obtener cookies por nombre
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                const [key, value] = cookie.trim().split('=');
+                if (key === name) {
+                    return value;
+                }
+            }
+            return null; // Si no se encuentra la cookie
+        }
+        
+        // Función para traducir los IDs de tipo de certificado a nombres
+        function traducirCertificado(id) {
+            switch (id) {
+                case '10':
+                    return 'Facturación Electrónica - Persona Jurídica';
+                case '11':
+                    return 'Facturación Electrónica - Persona Natural';
+                case '6':
+                    return 'Comunidad Académica';
+                case '9':
+                    return 'Pertenencia Empresa';
+                case '7':
+                    return 'Profesional Titulado';
+                case '8':
+                    return 'Representante Legal';
+                case '12':
+                    return 'Función Pública';
+                case '13':
+                    return 'Persona Jurídica';
+                case '14':
+                    return 'Función Pública para SIIF Nación';
+                case '5':
+                    return 'Persona Natural';
+                case '15':
+                    return 'Persona Natural Para Actividad Comercial(Rut)';
+                default:
+                    return '';
+            }
+        }
+        
+        // Función para traducir los IDs de vigencia a nombres
+        function traducirVigencia(id) {
+            switch (id) {
+                case '1':
+                    return '1 día';
+                case '2':
+                    return '1 mes';
+                case '3':
+                    return '3 meses';
+                case '4':
+                    return '6 meses';
+                case '5':
+                    return '1 año';
+                case '6':
+                    return '2 años';
+                default:
+                    return '';
+            }
+        }
+        
+        // Variable para almacenar la referencia a la fila que se está editando
+        let filaEditando = null;
+        
+        // Función para abrir el modal y cargar datos para editar
+        function abrirModalEditar(tipoCertificadoId, tipoCertificadoNombre, fila) {
+            filaEditando = fila; // Guarda la fila que se está editando
+            console.log('Editar certificado:', tipoCertificadoId); // Esto es solo para depuración
+            $('#certificadoModal').modal('show'); // Abre el modal
+        }
+        
+        // Función para agregar o editar un certificado
+        function agregarCertificado() {
+            const tipoCertificadoId = document.getElementById('tipoCertificado').value;
+            const tipoCertificadoNombre = traducirCertificado(tipoCertificadoId);
+        
+            // Obtén las vigencias seleccionadas
+            const vigenciasSeleccionadas = [];
+            const vigenciasCheckboxes = document.querySelectorAll('[id^="vigencia"]');
+            vigenciasCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    vigenciasSeleccionadas.push(checkbox.value);
+                }
+            });
+        
+            // Convierte a nombres usando la función de traducción
+            const vigenciaTextos = vigenciasSeleccionadas.map(traducirVigencia);
+        
+            // Obtén los formatos seleccionados
+            const formatosSeleccionados = [];
+            const formatosCheckboxes = document.querySelectorAll('[id^="formato"]');
+            formatosCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    formatosSeleccionados.push(checkbox.value);
+                }
+            });
+        
+            if (filaEditando) {
+                // Actualiza la fila existente
+                filaEditando.cells[0].textContent = tipoCertificadoNombre;
+                filaEditando.cells[1].textContent = vigenciaTextos.join(', ');
+                filaEditando.cells[2].textContent = formatosSeleccionados.join(', ');
+        
+                filaEditando = null; // Limpia la referencia
+            } else {
+                // Crea una nueva fila para agregar a la tabla
+                const newRow = document.createElement('tr');
+        
+                // Celdas de la fila
+                const tipoCertificadoCell = document.createElement('td');
+                tipoCertificadoCell.textContent = tipoCertificadoNombre;
+        
+                const vigenciaCell = document.createElement('td');
+                vigenciaCell.textContent = vigenciaTextos.join(', ');
+        
+                const formatoCell = document.createElement('td');
+                formatoCell.textContent = formatosSeleccionados.join(', ');
+        
+                const accionCell = document.createElement('td');
+        
+                // Botones para editar y eliminar
+                const editarBtn = document.createElement('button');
+                editarBtn.textContent = 'Editar';
+                editarBtn.classList.add('btn', 'btn-info', 'mr-2');
+                editarBtn.onclick = function() {
+                    abrirModalEditar(tipoCertificadoId, tipoCertificadoNombre, newRow);
+                };
+        
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.classList.add('btn', 'btn-danger');
+                eliminarBtn.onclick = function() {
+                    newRow.remove();
+                };
+        
+                // Añade los botones a la celda de acción
+                accionCell.appendChild(editarBtn);
+                accionCell.appendChild(eliminarBtn);
+        
+                // Añade las celdas a la fila
+                newRow.appendChild(tipoCertificadoCell);
+                newRow.appendChild(vigenciaCell);
+                newRow.appendChild(formatoCell);
+                newRow.appendChild(accionCell);
+        
+                // Agrega la fila a la tabla
+                document.getElementById('certificadosTableBody').appendChild(newRow);
+            }
+        
+            // Cerrar el modal después de agregar/editar
+            $('#certificadoModal').modal('hide');
+            
+            const path = window.location.pathname;
+            const parts = path.split('/');
+        
+            // El valor debería ser el penúltimo elemento si la URL termina con '/'
+            const id_convenio = parts[parts.length - 2];
+            // Enviar datos al backend mediante POST para guardar
+            fetch('/guardar_certificado/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken') // Obtiene el token CSRF
+                },
+                body: JSON.stringify({
+                    id_convenio: id_convenio,
+                    tipoCertificado: tipoCertificadoId, // Envía el ID en lugar del nombre
+                    vigencias: vigenciasSeleccionadas,
+                    formatos: formatosSeleccionados
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Datos guardados correctamente');
+                } else {
+                    console.error('Error al guardar los datos');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        // Escuchar cuando el DOM esté completamente cargado para asignar eventos
+        document.addEventListener('DOMContentLoaded', function() {
+            const guardarButton = document.querySelector('.modal-footer .btn-primary');
+            if (guardarButton) {
+                guardarButton.onclick = agregarCertificado; // Asigna la función para el botón "Guardar"
+            }
+        });
+        
+        </script>

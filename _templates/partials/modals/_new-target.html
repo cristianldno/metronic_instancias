@@ -1,153 +1,558 @@
+<style>
+    .h-20px { height: 20px; }
+    .w-20px { width: 20px; }
+    .fw-semibold { font-weight: 600; }
+    .form-check {
+        display: block; /* Hace que cada checkbox ocupe una línea completa */
+        margin-bottom: 10px; /* Añade un espacio entre cada checkbox */
+    }
+    .form-group {
+        margin-bottom: 15px; /* Añade un espacio entre cada grupo de formulario */
+    }
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600; 
+    }
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    .show-password {
+        margin-top: 5px;
+    }
+</style>
 <!--begin::Modal - New Target-->
 <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
-	<!--begin::Modal dialog-->
-	<div class="modal-dialog modal-dialog-centered mw-650px">
-		<!--begin::Modal content-->
-		<div class="modal-content rounded">
-			<!--begin::Modal header-->
-			<div class="modal-header pb-0 border-0 justify-content-end">
-				<!--begin::Close-->
-				<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">{% getIcon 'cross' 'fs-1' %}</div>
-				<!--end::Close-->
-			</div>
-			<!--begin::Modal header-->
-			<!--begin::Modal body-->
-			<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-				<!--begin:Form-->
-				<form id="kt_modal_new_target_form" class="form" action="#">
-					<!--begin::Heading-->
-					<div class="mb-13 text-center">
-						<!--begin::Title-->
-						<h1 class="mb-3">Datos para creación de Instancia</h1>
-						<!--end::Title-->
-						<!--begin::Description-->
-						<div class="text-muted fw-semibold fs-5"> 
-						
-						<!--end::Description-->
-					</div>
-					<!--end::Heading-->
-					<!--begin::Input group-->
-					<div class="d-flex flex-column mb-8 fv-row">
-						<!--begin::Label-->
-						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-							<span class="required">Target Title</span>
-							<span class="ms-1" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></span>
-						</label>
-						<!--end::Label-->
-						<input type="text" class="form-control form-control-solid" placeholder="Enter Target Title" name="target_title" />
-					</div>
-					<!--end::Input group-->
-					<!--begin::Input group-->
-					<div class="row g-9 mb-8">
-						<!--begin::Col-->
-						<div class="col-md-6 fv-row">
-							<label class="required fs-6 fw-semibold mb-2">Assign</label>
-							<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="target_assign">
-								<option value="">Select user...</option>
-								<option value="1">Karina Clark</option>
-								<option value="2">Robert Doe</option>
-								<option value="3">Niel Owen</option>
-								<option value="4">Olivia Wild</option>
-								<option value="5">Sean Bean</option>
-							</select>
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">{% getIcon 'cross' 'fs-1' %}</div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="kt_modal_new_target_form" class="form" method="post" action="/crear_instancia/" enctype="multipart/form-data">
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Datos para Creación de Instancia</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5"> 
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">Nombre/ Razon Social</span>
+                            <span class="ms-1" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></span>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" placeholder="Ingrese Nombre/ Razon Social" id="nombre" name="nombre" required/>
+                    </div>
+                    
+                    <div class="fw-semibold me-5">
+                        <label class="fs-6">Operaciones de Certificado</label>
+                    </div>
+                    <br>
+                    <!--end::Label-->
+                    <!--begin::Checkboxes-->
+                    <div>
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="consultar_certificado"type="checkbox" value="1" id="flexCheckDefault" />
+                            <span class="form-check-label fw-semibold">Consultar Certificado</span>
+                        </label>
+                        <!--end::Checkbox-->
+                        
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="revocar_certificado" type="checkbox" value="2" id="flexCheckChecked"/>
+                            <span class="form-check-label fw-semibold">Revocar Certificado</span>
+                        </label>
+                        <!--end::Checkbox-->
+                
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="cambiar_pin"type="checkbox" value="3" id="flexCheckDefault" />
+                            <span class="form-check-label fw-semibold">Cambiar Pin</span>
+                        </label>
+						<label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="reposicion_certificado" type="checkbox" value="4" id="flexCheckChecked" />
+                            <span class="form-check-label fw-semibold">Reposición Certificado Pertenencia Empresa ó Rep. Legal</span>
+                        </label>
+
+                        <!--end::Checkbox-->
+                    </div>
+                    <br>
+                    
+
+                    <div class="fw-semibold me-5">
+                        <label class="fs-6">Operaciones de Firmado</label>
+                    </div>
+                    <br>
+                    <!--end::Label-->
+                    <!--begin::Checkboxes-->
+                    <div>
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="firmar_documento" type="checkbox" value="1" id="flexCheckDefault"/>
+                            <span class="form-check-label fw-semibold">Firmar documento</span>
+                        </label>
+                        <!--end::Checkbox-->
+                        
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="verificar_firma" type="checkbox" value="2" id="flexCheckChecked" />
+                            <span class="form-check-label fw-semibold">Verificar Firma</span>
+                        </label>
+                    </div>
+                    <br>
+
+                    <div class="fw-semibold me-5">
+                        <label class="fs-6">Operaciones de OTP</label>
+                    </div>
+                    <br>
+                    <!--end::Label-->
+                    <!--begin::Checkboxes-->
+                    <div>
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="cambiar_otp" type="checkbox" value="1" id="flexCheckDefault" />
+                            <span class="form-check-label fw-semibold">Cambiar Timpo OTP</span>
+                        </label>
+                        <!--end::Checkbox-->
+                        
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="firmar_con_otp"type="checkbox" value="2" id="flexCheckChecked" />
+                            <span class="form-check-label fw-semibold">Firmar con OTP</span>
+                        </label>
+                        <!--end::Checkbox-->
+                
+                        <!--begin::Checkbox-->
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="invalidar_otp"type="checkbox" value="3" id="flexCheckChecked"/>
+                            <span class="form-check-label fw-semibold">Invalidar OTP</span>
+                        </label>
+                        <!--end::Checkbox-->
+                    </div>
+                    <br>
+
+                    <div class="fw-semibold me-5">
+                        <label class="fs-6">Credencialese Web Service</label>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="ws-usuario" class="form-label">Usuario Web Service</label>
+                        <input type="text" id="usuario_weservice" placeholder="Ingrese Usuario Web Service" name="usuario_weservice" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label for="contraseña_webservice" class="form-label">Contraseña Web Service</label>
+						<input type="password" id="contraseña_webservice" placeholder="Ingrese Contraseña Web Service" name="contraseña_webservice" class="form-control" required>
+						<div class="show-password">
+							<input type="checkbox" class="toggle-password" data-target="contraseña_webservice"> Mostrar Contraseña
 						</div>
-						<!--end::Col-->
-						<!--begin::Col-->
-						<div class="col-md-6 fv-row">
-							<label class="required fs-6 fw-semibold mb-2">Due Date</label>
-							<!--begin::Input-->
-							<div class="position-relative d-flex align-items-center">
-							<!--begin::Icon-->
-							{% getIcon 'calendar-8' 'fs-2 position-absolute mx-4' %} 
-							<!--end::Icon-->
-							<!--begin::Datepicker-->
-							<input class="form-control form-control-solid ps-12" placeholder="Select a date" name="due_date" />
-							<!--end::Datepicker--></div>
-							<!--end::Input-->
+					</div>
+                    <br>
+                    <div class="form-group">
+                        <label for="logo" class="form-label"><strong>Cargar Logo de la Empresa:</strong></label>
+                        <input type="file" class="form-control" id="logo" name="logo" accept="image/*" required>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="requiereBanner" class="form-label"><strong>¿Requiere Banner Corporativo?</strong></label>
+                        <div class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                Sí
+                            </label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input" type="radio" name="flexRadio" id="flexRadioDefault4" checked>
+                            <label class="form-check-label" for="flexRadioDefault4">
+                                No
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div id="campos-banner" class="form-group" style="display: none;">
+                        <div class="form-group campos-banner">
+                            <label for="imagenBanner" class="form-label"><strong>Cargar Banner Corporativo:</strong></label>
+                            <input type="file" class="form-control" id="imagenBanner" name="imagenBanner" accept="image/*">
+                        </div>
+                    </div>
+                    <br>
+					<div class="form-group">
+                        <label for="usuario" class="form-label">Color Primario</label>
+                        <input type="color" id="colorPrimario" name="colorPrimario" class="form-control" required>
+                    </div>
+					<br>
+					<div class="form-group">
+                        <label for="usuario" class="form-label">Color Secundario</label>
+                        <input type="color" id="colorSecundario" name="colorSecundario" class="form-control" required>
+                    </div>
+					<br>
+
+                    <div class="form-group">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" id="usuario_convenio" name="usuario_convenio" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label for="contraseña" class="form-label">Contraseña</label>
+						<input type="password" id="contraseña" name="contraseña" class="form-control" required>
+						<div class="show-password">
+							<input type="checkbox" class="toggle-password" data-target="contraseña"> Mostrar Contraseña
 						</div>
-						<!--end::Col-->
 					</div>
-					<!--end::Input group-->
-					<!--begin::Input group-->
-					<div class="d-flex flex-column mb-8">
-						<label class="fs-6 fw-semibold mb-2">Target Details</label>
-						<textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Type Target Details"></textarea>
-					</div>
-					<!--end::Input group-->
-					<!--begin::Input group-->
-					<div class="d-flex flex-column mb-8 fv-row">
-						<!--begin::Label-->
-						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-							<span class="required">Tags</span>
-							{% include 'partials/general/_form-tooltip-hint.html' %}
-						</label>
-						<!--end::Label-->
-						<input class="form-control form-control-solid" value="Important, Urgent" name="tags" />
-					</div>
-					<!--end::Input group-->
-					<!--begin::Input group-->
-					<div class="d-flex flex-stack mb-8">
-						<!--begin::Label-->
-						<div class="me-5">
-							<label class="fs-6 fw-semibold">Adding Users by Team Members</label>
-							<div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
+					<div class="form-group">
+						<label for="confirmarContraseña" class="form-label">Confirmar Contraseña</label>
+						<input type="password" id="confirmarContraseña" name="confirmarContraseña" class="form-control" required>
+						<div class="show-password">
+							<input type="checkbox" class="toggle-password" data-target="confirmarContraseña"> Mostrar Contraseña
 						</div>
-						<!--end::Label-->
-						<!--begin::Switch-->
-						<label class="form-check form-switch form-check-custom form-check-solid">
-							<input class="form-check-input" type="checkbox" value="1" checked="checked" />
-							<span class="form-check-label fw-semibold text-muted">Allowed</span>
-						</label>
-						<!--end::Switch-->
+					</div>					
+
+					<div class="fw-semibold me-5">
+						<label class="fs-6" for="tipoCertificado"><strong>Selecciona tipo de Certificado:</strong></label>
 					</div>
-					<!--end::Input group-->
-					<!--begin::Input group-->
-					<div class="mb-15 fv-row">
-						<!--begin::Wrapper-->
-						<div class="d-flex flex-stack">
-							<!--begin::Label-->
-							<div class="fw-semibold me-5">
-								<label class="fs-6">Notifications</label>
-								<div class="fs-7 text-muted">Allow Notifications by Phone or Email</div>
+					<br>
+					<div class="form-group">
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="10" id="10" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Facturación Electrónica - Persona Jurídica</label>
 							</div>
-							<!--end::Label-->
-							<!--begin::Checkboxes-->
-							<div class="d-flex align-items-center">
-								<!--begin::Checkbox-->
-								<label class="form-check form-check-custom form-check-solid me-10">
-									<input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="email" checked="checked" />
-									<span class="form-check-label fw-semibold">Email</span>
-								</label>
-								<!--end::Checkbox-->
-								<!--begin::Checkbox-->
-								<label class="form-check form-check-custom form-check-solid">
-									<input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="phone" />
-									<span class="form-check-label fw-semibold">Phone</span>
-								</label>
-								<!--end::Checkbox-->
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="11" id="11" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Facturación Electrónica - Persona Natural</label>
 							</div>
-							<!--end::Checkboxes-->
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="6" id="6" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Comunidad Académica</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="9" id="9" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Pertenencia Empresa</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="7" id="7" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Profesional Titulado</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="8" id="8" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Representante Legal</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="12" id="12" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Función Pública</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="13" id="13" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Persona Jurídica</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="14" id="14" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Función Pública para SIIF Nación</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="5" id="5" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Persona Natural</label>
+							</div>
+							
+							<div class="form-check">
+								<input class="form-check-input tipo-certificado" type="checkbox" value="15" id="15" data-toggle="modal" data-target="#modalCertificadoGenerico">
+								<label class="form-check-label" for="tipoCertificado">Persona Natural Para Actividad Comercial(Rut)</label>
+							</div>
 						</div>
-						<!--end::Wrapper-->
+
+					<div class="modal fade" id="modalCertificadoGenerico" tabindex="-1" aria-labelledby="modalCertificadoGenericoLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="modalCertificadoGenericoLabel">Certificado: <span id="certificadoTitulo"></span></h5>
+									<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="vigencia">Vigencia:</label><br>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia1" value="1">
+											<label class="form-check-label" for="vigencia1">1 día</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia2" value="2">
+											<label class="form-check-label" for="vigencia2">1 mes</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia3" value="3">
+											<label class="form-check-label" for="vigencia3">3 meses</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia4" value="4">
+											<label class="form-check-label" for="vigencia4">6 meses</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia5" value="5">
+											<label class="form-check-label" for="vigencia5">1 año</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input vigencia" type="checkbox" id="vigencia6" value="6">
+											<label class="form-check-label" for="vigencia6">2 años</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="formato">Formato de Entrega:</label><br>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input formato" type="checkbox" id="formato1" value="token_fisico">
+											<label class="form-check-label" for="formato1">Token Físico</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input formato" type="checkbox" id="formato2" value="token_virtual">
+											<label class="form-check-label" for="formato2">Token Virtual</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input formato" type="checkbox" id="formato3" value="pkcs10">
+											<label class="form-check-label" for="formato3">PKCS10</label>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+									<button type="button" class="btn btn-primary" onclick="agregarCertificado()">Agregar</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<!--end::Input group-->
-					<!--begin::Actions-->
-					<div class="text-center">
+					<br>
+					<div class="container mt-5">
+						<h3><strong>Certificados seleccionados</strong></h3>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Tipo de Certificado</th>
+									<th>Vigencia</th>
+									<th>Formato de Entrega</th>
+									<th>Acción</th>
+								</tr>
+							</thead>
+							<tbody id="certificadosTableBody">
+								<!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+							</tbody>
+						</table>
+					</div>
+					
+					
+
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center">
 						<button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
-						<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-							<span class="indicator-label">Submit</span>
+						<button type="button" id="kt_modal_new_target_submit" class="btn btn-primary" onclick="guardarDatos()">
+							<span class="indicator-label">Crear Instancia</span>
 							<span class="indicator-progress">Please wait... 
 							<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 						</button>
 					</div>
-					<!--end::Actions-->
-				</form>
-				<!--end:Form-->
-			</div>
-			<!--end::Modal body-->
-		</div>
-		<!--end::Modal content-->
-	</div>
-	<!--end::Modal dialog-->
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
 </div>
 <!--end::Modal - New Target-->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Mostrar/Ocultar campos de banner
+        var requiereBannerSi = document.getElementById("flexRadioDefault3");
+        var camposBanner = document.getElementById("campos-banner");
+        var requiereBannerNo = document.getElementById("flexRadioDefault4");
+
+        requiereBannerSi.addEventListener("change", toggleCamposBanner);
+        requiereBannerNo.addEventListener("change", toggleCamposBanner);
+
+        function toggleCamposBanner() {
+            camposBanner.style.display = requiereBannerSi.checked ? "block" : "none";
+        }
+
+        // Mostrar/Ocultar contraseña
+        var passwordToggles = document.querySelectorAll(".toggle-password");
+        passwordToggles.forEach(function(toggle) {
+            toggle.addEventListener("change", function() {
+                var targetId = this.getAttribute("data-target");
+                var passwordField = document.getElementById(targetId);
+                passwordField.type = this.checked ? "text" : "password";
+            });
+        });
+
+        // Agregar evento a los checkboxes de tipo certificado para abrir el modal y agregar certificado
+        var checkboxes = document.querySelectorAll('.tipo-certificado');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                var modalId = this.getAttribute('data-target');
+                var certificadoTitulo = this.nextElementSibling.textContent; // Obtener el título del certificado del label siguiente
+                mostrarModalCertificado(modalId, certificadoTitulo);
+            });
+        });
+
+        // Función para mostrar el modal y actualizar su contenido según el certificado
+        function mostrarModalCertificado(modalId, certificadoTitulo) {
+            // Actualizar el título del certificado en el modal
+            document.getElementById('certificadoTitulo').textContent = certificadoTitulo;
+            $(modalId).modal('show');
+        }
+
+        // Función para agregar certificado
+		window.agregarCertificado = function() {
+			// Obtener el título del certificado desde el modal
+			var certificadoTitulo = document.getElementById('certificadoTitulo').textContent;
+
+			// Obtener valores seleccionados de vigencia
+			var vigenciaSeleccionada = obtenerValoresSeleccionados('.vigencia');
+
+			// Mapear los valores de vigencia a sus descripciones correspondientes
+			vigenciaSeleccionada = vigenciaSeleccionada.map(function(valor) {
+				switch (valor) {
+					case '1':
+						return '1 día';
+					case '2':
+						return '1 mes';
+					case '3':
+						return '3 meses';
+					case '4':
+						return '6 meses';
+					case '5':
+						return '1 año';
+					case '6':
+						return '2 años';
+					// Añadir más casos según sea necesario para otros valores
+					default:
+						return ''; // Manejar casos no especificados
+				}
+			});
+
+			// Obtener valores seleccionados de formato
+			var formatoSeleccionado = obtenerValoresSeleccionados('.formato');
+
+			// Construir la fila de la tabla
+			var fila = '<tr>' +
+				'<td>' + certificadoTitulo + '</td>' +
+				'<td>' + vigenciaSeleccionada.join(', ') + '</td>' +
+				'<td>' + formatoSeleccionado.join(', ') + '</td>' +
+				'<td><button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">Eliminar</button></td>' +
+				'</tr>';
+
+			// Agregar la fila a la tabla
+			var tablaBody = document.getElementById('certificadosTableBody');
+			tablaBody.insertAdjacentHTML('beforeend', fila);
+
+			// Cerrar solo la modal de vigencias y formatos de entrega
+			$('#modalCertificadoGenerico').modal('hide');
+		}
+
+        // Función auxiliar para obtener valores seleccionados de checkboxes
+        function obtenerValoresSeleccionados(selector) {
+            var valoresSeleccionados = [];
+            document.querySelectorAll(selector + ':checked').forEach(function(el) {
+                valoresSeleccionados.push(el.value);
+            });
+            return valoresSeleccionados;
+        }
+
+        // Eliminar fila de la tabla
+        window.eliminarFila = function(btn) {
+            btn.closest('tr').remove();
+        }
+    });
+</script>
+
+<script>
+    function guardarDatos() {
+        const form = document.getElementById('kt_modal_new_target_form');
+        const formData = new FormData(form);
+    
+        // Obtener vigencias seleccionadas
+        let vigenciasSeleccionadas = [];
+        document.querySelectorAll('.modal-body .vigencia:checked').forEach((checkbox) => {
+            vigenciasSeleccionadas.push(checkbox.value);
+        });
+    
+        // Obtener formatos seleccionados
+        let formatosSeleccionados = [];
+        document.querySelectorAll('.modal-body .formato:checked').forEach((checkbox) => {
+            formatosSeleccionados.push(checkbox.value);
+        });
+    
+        // Agregar vigencias y formatos al FormData
+        formData.append('vigencias', vigenciasSeleccionadas.join(','));
+        formData.append('formatos', formatosSeleccionados.join(','));
+    
+        // Deshabilitar el botón y mostrar la animación de carga
+        const submitButton = document.getElementById('kt_modal_new_target_submit');
+        submitButton.disabled = true;
+        submitButton.querySelector('.indicator-label').style.display = 'none';
+        submitButton.querySelector('.indicator-progress').style.display = 'inline-block';
+    
+        // Llamar a la función para guardar la instancia y los certificados
+        fetch('/crear_instancia/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Instancia creada y certificados guardados:', data);
+    
+            // Habilitar el botón y ocultar la animación de carga
+            submitButton.disabled = false;
+            submitButton.querySelector('.indicator-label').style.display = 'inline-block';
+            submitButton.querySelector('.indicator-progress').style.display = 'none';
+    
+            // Mostrar algún mensaje de éxito o redirigir al usuario
+            alert('Instancia y certificados guardados exitosamente.');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+    
+            // Habilitar el botón y ocultar la animación de carga
+            submitButton.disabled = false;
+            submitButton.querySelector('.indicator-label').style.display = 'inline-block';
+            submitButton.querySelector('.indicator-progress').style.display = 'none';
+    
+            // Mostrar algún mensaje de error
+            alert('Ocurrió un error al guardar la instancia y los certificados.');
+        });
+    }
+</script>
+
+	
+	
+
+
+
+
