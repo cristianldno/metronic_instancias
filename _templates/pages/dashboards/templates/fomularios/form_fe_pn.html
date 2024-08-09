@@ -1,0 +1,444 @@
+<!--begin::Modal - New Target-->
+<div class="modal fade" id="form_fe_pn" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">{% getIcon 'cross' 'fs-1' %}</div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="form_fe_pn" class="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Solicitud Certificado Fact. Electrónica Persona Natural</h1>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="text-muted fw-semibold fs-5">
+                        <br>
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2" for="tipo-documento"><strong>Tipo de Documento</strong></label>
+                        <select class="form-select" id="tipo-documento" name="tipo-documento">
+                            <option value="1">CC</option>
+                            <option value="3">CE</option>
+                            <option value="2">NIT</option>
+                            <option value="4">NUIP</option>
+                            <option value="5">T.I</option>
+                            <option value="6">PAS</option>
+                            <option value="7">DNI</option>
+                            <option value="8">PPT</option>
+                            <option value="9">PEP</option>
+                            <option value="10">PA</option>
+                        </select>
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2" for="numero-documento"><strong>Número de Documento</strong></label>
+                        <input type="text" class="form-control" id="numero-documento" name="numero-documento">
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">Nombre/ Razon Social</span>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" placeholder="Ingrese Nombre/ Razon Social" id="nombre" name="nombre" required/>
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="apellidos" class="form-label"><strong>Apellidos</strong></label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5"> 
+                        <label for="departamento-persona" class="form-label"><strong>Departamento</strong></label> 
+                        <select id="departamento-persona" name="departamento-persona" class="form-control"> 
+                            <option value="">Seleccione un departamento</option>  
+                        </select> 
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">  
+                        <label for="municipio-persona" class="form-label"><strong>Municipio</strong></label>  
+                        <select id="municipio-persona" name="municipio-persona" class="form-control">  
+                            <option value="">Seleccione un municipio</option>  
+                        </select>  
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="direccion" class="form-label"><strong>Dirección</strong></label>
+                        <input type="text" class="form-control" id="direccion" name="direccion">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="celular" class="form-label"><strong>Número de Celular</strong></label>
+                        <input type="text" class="form-control" id="celular" name="celular">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="correo" class="form-label"><strong>Correo Electrónico</strong></label>
+                        <input type="email" class="form-control" id="correo" name="correo">
+                    </div>
+                    <br>
+                    <h3>Datos Entidad</h3>
+                    <br>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="razon-social" class="form-label"><strong>Razón Social</strong></label>
+                        <input type="text" class="form-control" id="razon-social" name="razon-social">
+                    </div>
+                    <label for="tipo-documento-entidad" class="form-label"><strong>Tipo de Documento entidad</strong></label>
+                    <select class="form-select" id="tipo-documento-entidad" name="tipo-documento-entidad">
+                        <option value="1">CC</option>
+                        <option value="3">CE</option>
+                        <option value="2">NIT</option>
+                        <option value="4">NUIP</option>
+                        <option value="5">T.I</option>
+                        <option value="6">PAS</option>
+                        <option value="7">DNI</option>
+                        <option value="8">PPT</option>
+                        <option value="9">PEP</option>
+                        <option value="10">PA</option>
+                    </select>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="numero-documento-entidad" class="form-label"><strong>Documento de la Entidad</strong></label>
+                        <input type="text" class="form-control" id="numero-documento-entidad" name="numero-documento-entidad">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="correo-entidad" class="form-label"><strong>Correo Electrónico de la Entidad</strong></label>
+                        <input type="email" class="form-control" id="correo-entidad" name="correo-entidad">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="departamento-empresa" class="form-label"><strong>Departamento</strong></label>
+                        <select id="departamento-empresa" name="departamento-empresa" class="form-control">
+                            <option value="">Seleccione un departamento</option> 
+                        </select>
+                    </div>
+                    <div class="text-muted fw-semibold fs-5"> 
+                        <label for="municipio-empresa" class="form-label"><strong>Municipio</strong></label> 
+                        <select id="municipio-empresa" name="municipio-empresa" class="form-control"> 
+                            <option value="">Seleccione un municipio</option> 
+                        </select> 
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="direccion-entidad" class="form-label"><strong>Dirección De La Entidad</strong></label>
+                        <input type="text" class="form-control" id="direccion-entidad" name="direccion-entidad">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="fecha-certificado" class="form-label"><strong>Fecha de Certificado</strong></label>
+                        <input type="date" class="form-control" id="fecha-certificado" name="fecha-certificado">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="vigencia" class="form-label"><strong>Vigencia</strong></label>
+                        <select class="form-select" id="vigencia" name="vigencia">
+                            <option value="22">79 Días</option>
+                            <option value="1">3 Meses</option>
+                            <option value="2">6 Meses</option>
+                            <option value="3">1 Año</option>
+                            <option value="17">14 Meses</option>
+                            <option value="4">2 Años</option>
+                        </select>
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="cargo" class="form-label"><strong>Cargo en la Empresa</strong></label>
+                        <input type="text" class="form-control" id="cargo" name="cargo">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="unidad-organizacional" class="form-label"><strong>Unidad Organizacional</strong></label>
+                        <input type="text" class="form-control" id="unidad-organizacional" name="unidad-organizacional">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="organizacion-factel" class="form-label"><strong>Organizacion Factel</strong></label>
+                        <input type="text" class="form-control" id="organizacion-factel" name="organizacion-factel">
+                    </div>
+                    <div class="text-muted fw-semibold fs-5">
+                        <label for="formato-entrega" class="form-label"><strong>Formato de Entrega</strong></label>
+                        <select class="form-select" id="formato-entrega" name="formato-entrega">
+                            <option value="2">PKCS10</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="text-muted fw-semibold fs-5"> 
+                        <label for="documentos" class="form-label"><b>Documentos De Soporte</b></label>
+                        <div id="lista-documentos"></div>
+                        <p><b>Adjuntar los documentos en una sola carpeta en .ZIP (comprimida)</b></p>
+                        <input type="file" class="form-control" id="documentos" name="documentos" multiple>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
+                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                            <span class="indicator-label">Crear Instancia</span>
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+<!--end::Modal - New Target-->
+
+<script>
+    $(document).ready(function() {
+        // Función para obtener el ID del tipo de certificado y hacer la solicitud AJAX
+        function obtenerDocumentos() {
+            var id_certificado = 11; // ID del tipo de certificado (puedes obtenerlo de algún elemento en tu formulario)
+            // Obtener el token CSRF desde el cookie
+            var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: '/obtener_docs/', // Ruta de la vista que maneja la obtención de documentos
+                method: 'POST', // Método HTTP a utilizar
+                data: { 
+                    id_certificado: id_certificado,
+                    csrfmiddlewaretoken: csrftoken // Incluir el token CSRF en los datos de la solicitud
+                },
+                dataType: 'json', // Tipo de datos esperados en la respuesta
+                success: function(response) {
+                    // Manejar la respuesta aquí
+                    console.log(response);
+                    // Llamar a la función para mostrar documentos con la lista obtenida
+                    mostrarDocumentos(response.documentos);
+                },
+                error: function(xhr, status, error) {
+                    // Manejar errores aquí
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        // Función para mostrar los documentos en el HTML
+        function mostrarDocumentos(documentos) {
+            // Obtener el elemento HTML donde se mostrarán los documentos
+            var listaDocumentosElement = $('#lista-documentos');
+
+            // Limpiar el contenido existente
+            listaDocumentosElement.empty();
+
+            // Crear una lista ordenada para mostrar los documentos
+            var listaDocumentosHTML = '<ol>';
+            documentos.forEach(function(documento, index) {
+                listaDocumentosHTML += `<li>${documento}</li>`;
+            });
+            listaDocumentosHTML += '</ol>';
+
+            // Agregar la lista de documentos al elemento HTML
+            listaDocumentosElement.html(listaDocumentosHTML);
+        }
+
+        // Llamar a la función para obtener documentos cuando la página se cargue
+        obtenerDocumentos();
+    });
+</script>
+
+<script>
+    $(document).ready(function() { 
+        // Cargar departamentos y municipios para datos personales
+        cargarDatos('#departamento-persona', '#municipio-persona');
+
+        // Cargar departamentos y municipios para datos de la empresa
+        cargarDatos('#departamento-empresa', '#municipio-empresa');
+
+        // Función para cargar departamentos y municipios
+        function cargarDatos(departamentoSelector, municipioSelector) {
+            // Evento para cargar departamentos
+            $(departamentoSelector).on('click', function() { 
+                cargarDepartamentos(departamentoSelector);
+            }); 
+
+            // Evento para cargar municipios cuando cambia el departamento 
+            $(departamentoSelector).on('change', function() { 
+                cargarMunicipios(departamentoSelector, municipioSelector);
+            }); 
+        }
+
+        // Función para cargar departamentos
+        function cargarDepartamentos(departamentoSelector) {
+            if ($(departamentoSelector).children('option').length > 1) {  
+                return;  
+            }  
+
+            $.ajax({  
+                url: '/obtener_departamentos/',  
+                method: 'GET',  
+                success: function(data) {  
+                    if (data.status === 'success') {  
+                        var departamentos = data.departamentos;  
+
+                        $(departamentoSelector).children('option:not(:first)').remove();  
+
+                        departamentos.forEach(function(departamento) {  
+                            $(departamentoSelector).append(`<option value="${departamento.id_departamento}">${departamento.nombre}</option>`);  
+                        });  
+                    }  
+                },  
+                error: function() {  
+                    console.error("Error al cargar los departamentos.");  
+                }  
+            });  
+        }
+
+        // Función para cargar municipios
+        function cargarMunicipios(departamentoSelector, municipioSelector) {
+            var departamento_id = $(departamentoSelector).val();  
+            if (departamento_id) {  
+                $.ajax({  
+                    url: `/obtener_municipios/${departamento_id}/`,  
+                    method: 'GET',  
+                    success: function(data) {  
+                        if (data.status === 'success') {  
+                            var municipios = data.municipios;  
+
+                            $(municipioSelector).children('option:not(:first)').remove();  
+
+                            municipios.forEach(function(municipio) {  
+                                $(municipioSelector).append(`<option value="${municipio.id}">${municipio.nombre}</option>`);  
+                            });  
+                        }  
+                    },  
+                    error: function() {  
+                        console.error("Error al cargar los municipios.");  
+                    }  
+                });  
+            }  
+        }
+
+        
+
+        // Configuración de la barra superior basada en datos almacenados localmente
+        var convenio = JSON.parse(localStorage.getItem('convenio'));
+        if (convenio) {
+            $('#topbar-container').css('background-color', convenio.color_primario);
+            $('#convenio-nombre').text(convenio.nombre);
+        }
+    });
+</script>
+
+<script>
+    // Función para retroceder en la historia del navegador
+    function goBack() {
+            window.history.back();
+        }
+</script>
+    
+
+<script>
+    $(document).ready(function() {
+        // Evento para formatear la fecha al cambiar su valor
+        $('#fecha-certificado').change(function() {
+            // Obtener el valor del campo de fecha
+            var fecha = $(this).val();
+            
+            // Dividir la fecha en año, mes y día
+            var parts = fecha.split("-");
+            var year = parts[0];
+            var month = parts[1];
+            var day = parts[2];
+            
+            // Formatear la fecha como "año-mes-día"
+            var fechaFormateada = year + '-' + month + '-' + day;
+            
+            // Asignar el valor formateado al campo de fecha
+            $(this).val(fechaFormateada);
+        });
+
+    })  
+    </script>
+    <script>
+        $(document).ready(function() { 
+            // Evento de envío del formulario 
+            $('#solicitar-certificado').on('click', function() { 
+                var formData = new FormData($('#solicitud-certificado-form')[0]);  // Para formularios con archivos 
+                var municipio = $('#municipio-persona').val();  // Obtener el valor del municipio 
+                var municipioEmpresa = $('#municipio-empresa').val();
+
+                console.log("Municipio personal:", $('#municipio-persona').val());  // Comprobar el valor del municipio personal 
+                console.log("Municipio empresa:", $('#municipio-empresa').val());
+                $.ajax({ 
+                    url: '{% url "radicado_fe_natural" %}',  // URL para enviar la solicitud SOAP 
+                    type: 'POST',  // Método HTTP 
+                    data: formData, 
+                    contentType: false, 
+                    processData: false, 
+                    success: function(response) { 
+                        if (response.status === 'success') { 
+                            $('#radicadoNumber').text(response.radicado);  // Mostrar número de radicado 
+                            $('#successModal').modal('show');  // Mostrar el modal 
+                        } else { 
+                            alert(response.message); 
+                        } 
+                    }, 
+                    error: function(error) { 
+                        alert('Hubo un error al enviar la solicitud.'); 
+                    } 
+                }); 
+            }); 
+    
+            // Obtener el objeto 'convenio' del localStorage 
+            var convenio = JSON.parse(localStorage.getItem('convenio'));  // Extraer y parsear el objeto 
+
+            if (convenio && convenio.nombre) {
+                // Usar el nombre directamente del objeto convenio
+                var convenioNombre = convenio.nombre;  // Obtiene el nombre del convenio
+
+                // Redirigir al hacer clic en el botón 'Aceptar'
+                $('#aceptar-button').on('click', function() {
+                    // Asegúrate de usar la interpolación de cadenas correcta con comillas invertidas
+                    var redirection_url = `/plantilla_dinamica/${convenioNombre}/`;  // URL dinámica con convenioNombre
+                    window.location.href = redirection_url;  // Redirige a la URL correcta
+                });
+            } else {
+                console.error("No se encontró el objeto 'convenio' o no tiene un nombre.");
+                alert("Error: No se encontró el nombre del convenio para redirigir.");
+            }
+        });
+    </script>
+<script> 
+    document.addEventListener("DOMContentLoaded", function() { 
+        const documentosInput = document.getElementById('documentos'); 
+         
+        documentosInput.addEventListener('change', function() { 
+            const archivos = this.files; 
+            const archivo = archivos[0]; // Solo tomamos el primer archivo seleccionado 
+     
+            if (!archivo) { 
+                return; // No hay archivo seleccionado 
+            } 
+     
+            if (!archivo.name.endsWith('.zip')) { 
+                alert("Este archivo no es .Zip, Por favor asegúrate de adjuntar archivos .zip."); 
+                this.value = ''; // Limpiamos el valor del campo para permitir una nueva selección 
+                return; 
+            } 
+     
+            // Validar contenido del archivo zip 
+            const zip = new JSZip(); 
+            zip.loadAsync(archivo).then(function(zipFile) { 
+                const nombresArchivos = Object.keys(zipFile.files); 
+                const numArchivos = nombresArchivos.filter(function(nombreArchivo) { 
+                    // Filtramos solo los archivos regulares (no directorios) 
+                    return !zipFile.files[nombreArchivo].dir; 
+                }).length; 
+     
+                if (numArchivos !== 2) { 
+                    alert("El archivo .zip debe contener exactamente dos documentos."); 
+                    documentosInput.value = ''; // Limpiamos el valor del campo 
+                } else { 
+                    alert("Archivo .zip válido con dos documentos."); 
+                } 
+            }).catch(function(error) { 
+                console.error('Error al cargar el archivo .zip', error); 
+                alert("Ocurrió un error al cargar el archivo .zip."); 
+                documentosInput.value = ''; // Limpiamos el valor del campo 
+            }); 
+        }); 
+    }); 
+    </script>

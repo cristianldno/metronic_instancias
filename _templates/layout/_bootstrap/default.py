@@ -43,6 +43,7 @@ class KTBootstrapDefault:
         KTTheme.addJavascriptFile('js/custom/utilities/modals/create-app.js')
         KTTheme.addJavascriptFile('js/custom/utilities/modals/users-search.js')
         KTTheme.addJavascriptFile('js/custom/utilities/modals/new-target.js')
+        KTTheme.addJavascriptFile('js/custom/utilities/modals/form_fe_pj.js')
 
         return context
 

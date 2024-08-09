@@ -119,10 +119,10 @@ var KTModalNewTarget = function () {
 							
 							// Show success message. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 							Swal.fire({
-								text: "Form has been successfully submitted!",
+								text: "Datos enviados Exitosamente!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Finalizar",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -154,12 +154,12 @@ var KTModalNewTarget = function () {
 			e.preventDefault();
 
 			Swal.fire({
-				text: "Are you sure you would like to cancel?",
+				text: "Desea Cancelar La Creación de esta Instancia?",
 				icon: "warning",
 				showCancelButton: true,
 				buttonsStyling: false,
-				confirmButtonText: "Yes, cancel it!",
-				cancelButtonText: "No, return",
+				confirmButtonText: "Si, cancelar!",
+				cancelButtonText: "No, Volver",
 				customClass: {
 					confirmButton: "btn btn-primary",
 					cancelButton: "btn btn-active-light"
@@ -170,10 +170,10 @@ var KTModalNewTarget = function () {
 					modal.hide(); // Hide modal				
 				} else if (result.dismiss === 'cancel') {
 					Swal.fire({
-						text: "Your form has not been cancelled!.",
+						text: "ok, Continúa con la creación!.",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "continuar!",
 						customClass: {
 							confirmButton: "btn btn-primary",
 						}

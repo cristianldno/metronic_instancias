@@ -1,100 +1,203 @@
 <!--begin::Table widget 14-->
-<div class="card card-flush h-md-100 col-xl-12" >
-	<!--begin::Header-->
-	<div class="card-header pt-lg-10">
-		<!--begin::Title-->
-		<h3 class="card-title align-items-start flex-column">
-			<span class="card-label fw-bold text-gray-800">{{ convenio.nombre }}<p>Nombre</p></span>
-		</h3>
-		<!--end::Title-->
-		<!--begin::Toolbar-->
-		<div class="card-toolbar">
-			<a href="#" class="btn btn-sm btn-light">cerrar sesión</a>
-		</div>
-		<!--end::Toolbar-->
-	</div>
-	<!--end::Header-->
-	<!--begin::Body-->
-	<div class="card-body pt-6">
-		<!--begin::Table container-->
-		<div class="table-responsive">
-			<!--begin::Table-->
-			<div id="cont-principal" class="container">
-				<img id="logo" src="{{ convenio.logo.url }}" alt="Logo Empresa" width="180" height="120">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-					  
-					  <li class="nav-item dropdown" style="{% if not certificados_con_nombre_y_formulario %}visibility: hidden;{% endif %}">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Solicitud De Certificado
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						  <ul>
-							{% for certificado in certificados_con_nombre_y_formulario %}
-							  <li><a href="/{{ certificado.formulario }}">{{ certificado.tipo_certificado }}</a></li>
-							{% endfor %}
-						  </ul>
-						</div>
-					  </li>
-					  
-					  <li class="nav-item dropdown" style="{% if not operaciones_certificado %}visibility: hidden;{% endif %}">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Operaciones De Certificado
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						  <ul>
-							{% for operacion_cert in operaciones_certificado %}
-							  <li>{{ operacion_cert }}</li>
-							{% endfor %}
-						  </ul>
-						</div>
-					  </li>
-			
-					  <li class="nav-item dropdown" style="{% if not operaciones_firmado %}visibility: hidden;{% endif %}">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Operaciones De Firmado
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						  <ul>
-							{% for operacion_firmado in operaciones_firmado %}
-							  <li>{{ operacion_firmado }}</li>
-							{% endfor %}
-						  </ul>
-						</div>
-					  </li>
-			
-					  <li class="nav-item dropdown" style="{% if not operaciones_otp %}visibility: hidden;{% endif %}">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Operaciones OTP
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						  <ul>
-							{% for operacion_otp in operaciones_otp %}
-							  <li>{{ operacion_otp }}</li>
-							{% endfor %}
-						  </ul>
-						</div>
-					  </li>
-					  
-					</ul>
-				  </div>
-				</nav>
-			  </div>
-			  <!--<img id="imagen_banner" src="{{ convenio.imagen_banner }}" alt="{{ convenio.nombre }} logo" >-->
-			  <div id="banner-publicidad">
-				{% if convenio.imagen_banner %}
-					<img src="{{ convenio.imagen_banner.url }}" alt="{{ convenio.nombre }} banner" width="600">
-				{% else %}
-					
-				{% endif %}
-			</div>
-			
-			
-			
-		</div>
-		<!--end::Table-->
-	</div>
-	<!--end: Card Body-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Incluir una fuente personalizada desde Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Roboto', sans-serif; /* Aplicar la fuente personalizada */
+		font-size: 20px; 
+    }
+
+    #banner-publicidad {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-top: -50px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-family: 'Roboto', sans-serif; /* Asegurarse de aplicar la fuente a otros elementos si es necesario */
+    }
+
+	.d-flex.align-items-center.gap-2.gap-lg-3.ml-auto a {
+        margin-left: 10px; /* Espaciado entre botones */
+    }
+
+	.navbar-nav .nav-item .nav-link#navbarDropdown {
+        font-size: 16px; /* Ajusta este valor según el tamaño que desees */
+    }
+
+	.certificados-list {
+        padding: 10px;
+        font-size: 16px; /* Tamaño de letra más grande */
+        list-style: none; /* Quitar los puntos de la lista */
+        margin: 0;
+    }
+
+    .certificados-list li {
+        margin-bottom: 5px; /* Espaciado entre elementos */
+    }
+
+    .certificados-list a {
+        text-decoration: none; /* Quitar subrayado de los enlaces */
+        color: #007bff; /* Color de los enlaces */
+    }
+
+    .certificados-list a:hover {
+        color: #0056b3; /* Color de los enlaces al pasar el mouse */
+        text-decoration: underline; /* Subrayar los enlaces al pasar el mouse */
+    }
+
+    .dropdown-menu {
+        padding: 10px; /* Espaciado interno del menú desplegable */
+        font-size: 18px; /* Tamaño de letra del menú desplegable */
+    }
+
+</style>
+
+<div class="card card-flush h-md-100 col-xl-12">
+    <!--begin::Header-->
+    <div class="card-header pt-lg-10">
+        <!--begin::Title-->
+        <img id="logo" src="{{ convenio.logo.url }}" alt="Logo Empresa" width="150" height="120">
+        <!--end::Title-->
+        <!--begin::Toolbar-->
+        <div class="card-toolbar">
+            <!--<a href="#" class="btn btn-sm btn-light">cerrar sesión</a>-->
+            <a onclick="cerrarSesion()" class="btn" style="background-color: #E6EAED; border-color: #E6EAED; color: #111316; font-family: 'Roboto', sans-serif; font-size: 15px; ">Cerrar Sesión</a>
+        </div>
+        <!--end::Toolbar-->
+    </div>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <div class="card-body pt-6">
+        <!--begin::Table container-->
+        <div class="table-responsive">
+            <!--begin::Table-->
+            <div id="cont-principal" class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" id="navbarSupportedContent">
+                        <h1 class="card-title m-0">
+                            <span class="card-label fw-bold text-gray-800">{{ convenio.nombre }}</span>
+                        </h1>
+                        <ul class="navbar-nav ml-auto d-flex align-items-center">
+							<li class="nav-item dropdown mr-3" style="{% if not certificados_con_nombre_y_formulario %}visibility: hidden;{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Solicitud De Certificado
+                                </a >
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ul class="certificados-list">
+                                        {% for certificado in certificados_con_nombre_y_formulario %}
+										<li><a href="#" class="certificado-link" data-formulario="{{ certificado.formulario }}">{{ certificado.tipo_certificado }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            <li class="nav-item dropdown mr-3" style="{% if not operaciones_certificado %}visibility: hidden;{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Operaciones De Certificado
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ul class="certificados-list">
+                                        {% for operacion_cert in operaciones_certificado %}
+                                            <li>{{ operacion_cert }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                
+                            <li class="nav-item dropdown mr-3" style="{% if not operaciones_firmado %}visibility: hidden;{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Operaciones De Firmado
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ul class="certificados-list">
+                                        {% for operacion_firmado in operaciones_firmado %}
+                                            <li>{{ operacion_firmado }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                
+                            <li class="nav-item dropdown mr-3" style="{% if not operaciones_otp %}visibility: hidden;{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Operaciones OTP
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <ul class="certificados-list">
+                                        {% for operacion_otp in operaciones_otp %}
+                                            <li>{{ operacion_otp }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+            <!--<img id="imagen_banner" src="{{ convenio.imagen_banner }}" alt="{{ convenio.nombre }} logo" >-->
+            <div id="banner-publicidad">
+                {% if convenio.imagen_banner %}
+                    <img src="{{ convenio.imagen_banner.url }}" alt="{{ convenio.nombre }} banner">
+                {% else %}
+                    
+                {% endif %}
+            </div>
+        </div>
+        <!--end::Table-->
+    </div>
+    <!--end: Card Body-->
 </div>
 <!--end::Table widget 14-->
+<script>
+    function cerrarSesion() {
+        localStorage.clear();
+        window.location.href = "/index";
+    }
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.certificado-link').click(function(event) {
+			event.preventDefault();
+			var formulario = $(this).data('formulario');
+			var modalId = '#' + formulario;
+
+			$.ajax({
+				url: '/formulario/' + formulario + '/',
+				type: 'GET',
+				success: function(data) {
+					if (data.html) {
+						$(modalId + ' .modal-body').html(data.html);
+						$(modalId).modal('show');
+					} else if (data.error) {
+						alert(data.error);
+					} else {
+						alert('No se pudo cargar el contenido del formulario.');
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error('Error:', status, error);
+					alert('Error al cargar el formulario. Revisa la consola para más detalles.');
+				}
+			});
+		});
+	});
+
+
+</script>

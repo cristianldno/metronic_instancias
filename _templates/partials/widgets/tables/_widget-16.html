@@ -35,9 +35,7 @@
 						<!--begin::Table head-->
 						<thead>
 							<tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
-								<th class="p-0 pb-3 min-w-150px text-start">Listado de Empresas</th>
-								<th class="p-0 pb-3 min-w-100px text-end pe-13">URL.</th>
-								
+								<th class="p-0 pb-3 min-w-150px text-start"><i class="bi bi-card-list"></i>&nbsp; Listado de Empresas.  <br><br><i class="bi bi-box-arrow-up-right"></i>&nbsp; URLS. </th>
 							</tr>
 						</thead>
 						<!--end::Table head-->
@@ -45,12 +43,42 @@
 						<tbody> 
 							{% for convenio in convenios %} 
 								<tr> 
-									<td><a href="{% url 'detalle_convenio' convenio.nombre %}">{{ convenio.nombre }}</a></td> 
+									<!--<td><a href="{% url 'dashboards:detalle_convenio' nombre=convenio.nombre %}">{{ convenio.nombre }}</a></td>--> 
+									<td><strong><a href="{% url 'dashboards:plantilla_dinamica' convenio.nombre %}">{{ convenio.nombre }}</a></strong></td>
 								</tr> 
 							{% endfor %} 
 						</tbody> 
 						<!--end::Table body-->
 					</table>
+					<!-- Paginación -->
+					<nav aria-label="Page navigation">
+						<ul class="pagination pagination-circle">
+							{% if convenios.has_previous %}
+							<li class="page-item">
+								<a class="page-link" href="?page={{ convenios.previous_page_number }}&q={{ request.GET.q }}" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							{% endif %}
+							
+							{% for num in convenios.paginator.page_range %}
+							{% if convenios.number == num %}
+							<li class="page-item active"><span class="page-link">{{ num }}</span></li>
+							{% else %}
+							<li class="page-item"><a class="page-link" href="?page={{ num }}&q={{ request.GET.q }}">{{ num }}</a></li>
+							{% endif %}
+							{% endfor %}
+							
+							{% if convenios.has_next %}
+							<li class="page-item">
+								<a class="page-link" href="?page={{ convenios.next_page_number }}&q={{ request.GET.q }}" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+							{% endif %}
+						</ul>
+					</nav>
+					<!-- Fin Paginación -->
 					<!--end::Table-->
 				</div>
 				<!--end::Table container-->
