@@ -5,7 +5,10 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from _keenthemes.__init__ import KTLayout
 from _keenthemes.libs.theme import KTTheme
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
+@method_decorator(never_cache, name='dispatch')
 class AuthSigninView(TemplateView):
     template_name = 'pages/auth/signin.html'
 
@@ -19,25 +22,17 @@ class AuthSigninView(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        print("se ejecuta post")
         email = request.POST.get('usuario')
         password = request.POST.get('contraseña')
         user = authenticate(request, username=email, password=password)
-        print("user:",email)
         if user is not None:
             login(request, user)
-            #return redirect('/index')
-            return JsonResponse({'success':True,'redirectUrl':'/index'})
-
-            
+            return JsonResponse({'success': True, 'redirectUrl': '/index'})
         else:
             context = self.get_context_data()
             context['error'] = 'Usuario o contraseña incorrectos, Verificalos y vuelve a intentar'
-            print("hola",self.render_to_response(context))
-            #return self.render_to_response(context)
-            return JsonResponse({'message':context['error']})
-        
+            return JsonResponse({'message': context['error']})
+
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
         return self.render_to_response(context)
-    

@@ -19,6 +19,7 @@ from django.template.exceptions import TemplateDoesNotExist
 from django.http import JsonResponse, HttpResponse
 import traceback
 
+@method_decorator(login_required, name='dispatch')
 class DashboardsView(TemplateView):
     # Default template file
     # Refer to dashboards/urls.py file for more pages and template files
@@ -33,7 +34,7 @@ class DashboardsView(TemplateView):
         
         # Ordenar convenios y aplicar paginación
         convenios_ordenados = CONVENIO.objects.order_by('-id')
-        paginator = Paginator(convenios_ordenados, 10)
+        paginator = Paginator(convenios_ordenados, 5)
         page_number = self.request.GET.get('page')
         
         try:
@@ -146,8 +147,9 @@ def plantilla_convenio(request, id):
     return render(request, 'plantilla_convenio.html', {'convenio': convenio})
 
 
+
 def formulario_view(request, formulario):
-    print("Entrando a la función")
+    print("Entrando a la función con formulario:", formulario)
     templates = {
         'form_fe_pj': 'formularios/form_fe_pj.html',
         'form_fe_pn': 'formularios/form_fe_pn.html',
@@ -163,11 +165,10 @@ def formulario_view(request, formulario):
     }
 
     template_name = templates.get(formulario)
-    print("template:", template_name)
+    print("Template seleccionado:", template_name)
     if template_name:
         try:
             html = render_to_string(template_name, {})
-            print("html:", html)
             print("HTML generado correctamente")
             return JsonResponse({'html': html})
         except TemplateDoesNotExist:
@@ -178,4 +179,5 @@ def formulario_view(request, formulario):
             print(traceback.format_exc())
             return JsonResponse({'error': 'Error al renderizar la plantilla.'}, status=500)
     else:
+        print("Error: Formulario no encontrado.")
         return JsonResponse({'error': 'Formulario no encontrado.'}, status=404)

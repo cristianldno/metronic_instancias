@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf import settings
 from dashboards.views import DashboardsView
 from dashboards.views import DashboardsView, plantilla_dinamica
+
 from .views import formulario_view
 
 

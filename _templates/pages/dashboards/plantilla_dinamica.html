@@ -1,31 +1,48 @@
-<!--
-Define in dashboards/views.py file
-context.update({
-    'layout': KTTheme.setLayout('default.html', context),
-})
--->
 {% extends 'layout/default.html' %}
 
 {% load i18n %}
 
-{% block title %}{% translate "Dashboard" %}{% endblock %}
+{% block title %}{% translate "Instancias" %}{% endblock %}
 
 {% block content %}
 
+<style>
+    /* styles.css or your relevant stylesheet */
+    .widget-top {
+        position: fixed; /* Usa fixed para que el widget permanezca en la parte superior durante el desplazamiento */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10; /* Asegúrate de que el widget esté sobre otros elementos */
+        background-color: #fff; /* Asegúrate de que tenga un fondo para que el contenido sea legible */
+        padding: 1px; /* Agrega padding para que el contenido no esté pegado a los bordes */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: agrega una sombra para que el widget se destaque */
+        box-sizing: border-box; /* Asegúrate de que el padding y el borde se incluyan en el ancho total */
+        transition: top 0.3s; /* Opcional: agrega una transición suave para el movimiento */
+    }
 
+/* Ensure the next section is pushed down to avoid overlap */
+    .other-content {
+        margin-top: 100px; /* Adjust based on widget height */
+    }
+    .row.g-5.g-xl-10.mb-5.mb-xl-10 {
+        display: flex;
+        justify-content: center; /* Centra el widget horizontalmente */
+        align-items: flex-start; /* Alinea el widget al inicio del contenedor */
+    }
+</style>
 
-<!--begin::Row-->
-<div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-    
-    <!--end::Col-->
-    <!--begin::Col-->
+<!-- Begin:: Row -->
+<div class="row g-5 g-xl-10 mb-5 mb-xl-10 widget-top">
     <div class="col-xl-12">
         {% include 'partials/widgets/tables/_widget-14.html' %}
     </div>
-    <!--end::Col-->
 </div>
-<!--end::Row-->
+<!-- End:: Row -->
 
-
+<!-- Other content below -->
+<div class="other-content">
+    <!-- Your other content goes here -->
+</div>
 
 {% endblock content %}

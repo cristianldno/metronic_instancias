@@ -1,6 +1,37 @@
 <!--begin::Footer-->
 <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-	<a href="https://preview.keenthemes.com/html/metronic/docs" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
+	<a href="{% url 'auth:signin' %}" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
 	<span class="btn-label"><i class="bi bi-box-arrow-left" ></i> Cerrar Sesión</span>{% getIcon 'document' 'btn-icon fs-2 m-0' %}</a>
 </div>
 <!--end::Footer-->
+
+<script>
+	document.getElementById("logoutButton").addEventListener("click", function(event) {
+		event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+
+		// Borrar el caché del navegador
+		if ('caches' in window) {
+			caches.keys().then(function(keyList) {
+				return Promise.all(keyList.map(function(key) {
+					return caches.delete(key);
+				}));
+			}).then(function() {
+				// Limpiar el historial del navegador para evitar volver a la página anterior
+				window.history.pushState(null, null, window.location.href);
+				window.addEventListener('popstate', function() {
+					window.history.pushState(null, null, window.location.href);
+				});
+
+				// Redirigir al enlace de cerrar sesión después de borrar el caché
+				window.location.href = event.target.closest('a').href;
+			});
+		} else {
+			// Si el navegador no soporta la API de caché, simplemente redirigir
+			window.history.pushState(null, null, window.location.href);
+			window.addEventListener('popstate', function() {
+				window.history.pushState(null, null, window.location.href);
+			});
+			window.location.href = event.target.closest('a').href;
+		}
+	});
+</script>
