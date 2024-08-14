@@ -95,7 +95,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" id="navbarSupportedContent">
                         <h1 class="card-title m-0">
-                            <span class="card-label fw-bold text-gray-800">{{ convenio.nombre }}</span>
+                            <span class="card-label fw-bold text-gray-800" style="font-style: Roboto;">{{ convenio.nombre }}</span>
                         </h1>
                         <ul class="navbar-nav ml-auto d-flex align-items-center">
 							<li class="nav-item dropdown mr-3" style="{% if not certificados_con_nombre_y_formulario %}visibility: hidden;{% endif %}">
@@ -105,11 +105,9 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <ul class="certificados-list">
                                         {% for certificado in certificados_con_nombre_y_formulario %}
-										<li>
-                                            <a href="#" class="certificado-link" data-formulario="{{ certificado.formulario }}">
-                                                {{ certificado.tipo_certificado }}
-                                            </a>
-                                        </li>
+                                            <li>
+                                                <a href="/{{ certificado.formulario }}">{{ certificado.tipo_certificado }}</a>
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -182,32 +180,5 @@
     }
 </script>
 
-<script>
-    $(document).ready(function() {
-        $('.certificado-link').click(function(event) {
-            event.preventDefault();
-            var formulario = $(this).data('formulario');
-            var modalId = '#' + formulario;
 
-            $.ajax({
-                url: '/formulario/' + formulario + '/',
-                type: 'GET',
-                success: function(data) {
-                    if (data.html) {
-                        $(modalId + ' .modal-body').html(data.html);
-                        $(modalId).modal('show');
-                    } else if (data.error) {
-                        alert(data.error);
-                    } else {
-                        alert('No se pudo cargar el contenido del formulario.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', status, error);
-                    alert('Error al cargar el formulario. Revisa la consola para más detalles.');
-                }
-            });
-        });
-    });
-</script>
 

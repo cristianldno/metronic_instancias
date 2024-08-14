@@ -242,38 +242,38 @@ def instancia(request):
     return render (request, 'instancia.html')
 
 
-def form_pers_nat(request):
-    return render(request, 'form_pers_nat.html')
+# def form_pers_nat(request):
+#     return render(request, 'form_pers_nat.html')
 
-def form_pers_jur(request):
-    return render (request, 'form_pers_jur.html')
+# def form_pers_jur(request):
+#     return render (request, 'form_pers_jur.html')
 
-def form_pers_nat_rut(request):
-    return render (request, 'form_per_nat_rut.html')
+# def form_pers_nat_rut(request):
+#     return render (request, 'form_per_nat_rut.html')
 
-def form_pert_emp(request):
-    return render (request, 'form_pert_emp.html')
+# def form_pert_emp(request):
+#     return render (request, 'form_pert_emp.html')
 
-def form_prof_titu(request):
-    return render (request, 'form_prof_titu.html')
+# def form_prof_titu(request):
+#     return render (request, 'form_prof_titu.html')
 
-def form_fe_pj(request):
-    return render (request, '_templates/formularios/form_fe_pj.html')
+# def form_fe_pj(request):
+#     return render (request, '_templates/formularios/form_fe_pj.html')
 
-def form_fe_pn(request):
-    return render (request, 'form_fe_pn.html')
+# def form_fe_pn(request):
+#     return render (request, 'form_fe_pn.html')
 
-def form_func_pub(request):
-    return render (request, 'form_func_pub.html')
+# def form_func_pub(request):
+#     return render (request, 'form_func_pub.html')
 
-def form_siif_nac(request):
-    return render (request, 'form_siif_nac.html')
+# def form_siif_nac(request):
+#     return render (request, 'form_siif_nac.html')
 
-def form_com_acad(request):
-    return render (request, 'form_com_acad.html')
+# def form_com_acad(request):
+#     return render (request, 'form_com_acad.html')
 
-def form_rep_leg(request):
-    return render (request, 'form_rep_leg.html')
+# def form_rep_leg(request):
+#     return render (request, 'form_rep_leg.html')
 
 
 def procesar_formulario_convenio(request):

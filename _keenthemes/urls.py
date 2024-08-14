@@ -28,7 +28,7 @@ urlpatterns = [
     path('', include('auth.urls')),
 
     # crear urls
-    path('', include('crear.urls')),
+    #path('', include('crear.urls')),
 ]
 
 handler404 = SystemView.as_view(template_name = 'pages/' + settings.KT_THEME + '/system/not-found.html', status=404)
