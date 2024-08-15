@@ -388,7 +388,20 @@ def form_com_acad(request):
 def form_rep_leg(request):
     return render (request, 'pages/dashboards/form_rep_leg.html')
 
+def procesar_formulario_convenio(request):
+    if request.method == 'POST':
+        convenio = CONVENIO(nombre=request.POST['nombre'])
+        convenio.save()
 
+        certificados_seleccionados_ids = request.POST.getlist('tipos_certificados')
+
+        for certificado_id in certificados_seleccionados_ids:
+            TIPO_CERT = TIPO_CERT.objects.get(pk=certificado_id)
+            convenio.certificados_seleccionados.add(TIPO_CERT)
+
+        return render(request, 'tu_template.html', {'convenio': convenio})
+    else:
+        return render(request, 'tu_formulario.html')
 
 
 
@@ -815,7 +828,7 @@ def radicado_pers_nat(request):
         </soapenv:Header>
             <soapenv:Body>
               <and:CertificadosRequest>
-                 <and:tipoCert>16</and:tipoCert>
+                 <and:tipoCert>5</and:tipoCert>
                  <and:tipoDoc>{tipo_doc}</and:tipoDoc>
                  <and:documento>{documento}</and:documento>
                  <and:nombres>{nombres}</and:nombres>
@@ -1759,7 +1772,7 @@ def radicado_fe_natural(request):
             </soapenv:Header>
            <soapenv:Body>
               <and:CertificadoFacturacionElectronicaRequest>
-                 <and:tipoCert>10</and:tipoCert>
+                 <and:tipoCert>11</and:tipoCert>
                  <and:tipoDoc>{tipo_doc}</and:tipoDoc>
                  <and:documento>{documento}</and:documento>
                  <and:nombres>{nombres}</and:nombres>
@@ -1920,7 +1933,7 @@ def radicado_fe_juridica(request):
             </soapenv:Header>
            <soapenv:Body>
               <and:CertificadoFacturacionElectronicaRequest>
-                 <and:tipoCert>11</and:tipoCert>
+                 <and:tipoCert>10</and:tipoCert>
                  <and:tipoDoc>{tipo_doc}</and:tipoDoc>
                  <and:documento>{documento}</and:documento>
                  <and:nombres>{nombres}</and:nombres>

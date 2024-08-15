@@ -473,6 +473,7 @@ def formulario_instancia(request):
 def formulario1(request):
     departamentos = obtener_departamentos()  # Llamar a la función para obtener la lista de departamentos
     return render(request, 'formulario1.html', {'departamentos': departamentos})
+
 def procesar_formulario(request):
     if request.method == 'POST':
         # Aquí puedes procesar los datos del formulario enviado
@@ -484,6 +485,7 @@ def procesar_formulario(request):
     else:
         # Si la solicitud no es POST, puedes manejarlo según sea necesario
         return HttpResponse('¡Solicitud no válida!')
+    
 def campos_form(request):
     departamentos = obtener_departamentos()
     print("departamentos:", departamentos)  # Imprimirá los departamentos en la terminal

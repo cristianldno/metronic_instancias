@@ -422,7 +422,55 @@
     
         })  
         </script>
+        <script>
+            $(document).ready(function() { 
+                // Evento de envío del formulario 
+                $('#solicitar-certificado').on('click', function() { 
+                    var formData = new FormData($('#solicitud-certificado-form')[0]);  // Para formularios con archivos 
+                    var municipio = $('#municipio-persona').val();  // Obtener el valor del municipio 
+                    var municipioEmpresa = $('#municipio-empresa').val();
+
+                    console.log("Municipio personal:", $('#municipio-persona').val());  // Comprobar el valor del municipio personal 
+                    console.log("Municipio empresa:", $('#municipio-empresa').val());
+                    $.ajax({ 
+                        url: '{% url "dashboards:radicado_fe_juridica" %}',  // URL para enviar la solicitud SOAP 
+                        type: 'POST',  // Método HTTP 
+                        data: formData, 
+                        contentType: false, 
+                        processData: false, 
+                        success: function(response) { 
+                            if (response.status === 'success') { 
+                                $('#radicadoNumber').text(response.radicado);  // Mostrar número de radicado 
+                                $('#successModal').modal('show');  // Mostrar el modal 
+                            } else { 
+                                alert(response.message); 
+                            } 
+                        }, 
+                        error: function(error) { 
+                            alert('Hubo un error al enviar la solicitud.'); 
+                        } 
+                    }); 
+                }); 
         
+                // Obtener el objeto 'convenio' del localStorage 
+                var convenio = JSON.parse(localStorage.getItem('convenio'));  // Extraer y parsear el objeto 
+
+                if (convenio && convenio.nombre) {
+                    // Usar el nombre directamente del objeto convenio
+                    var convenioNombre = convenio.nombre;  // Obtiene el nombre del convenio
+
+                    // Redirigir al hacer clic en el botón 'Aceptar'
+                    $('#aceptar-button').on('click', function() {
+                        // Asegúrate de usar la interpolación de cadenas correcta con comillas invertidas
+                        var redirection_url = `/plantilla_dinamica/${convenioNombre}/`;  // URL dinámica con convenioNombre
+                        window.location.href = redirection_url;  // Redirige a la URL correcta
+                    });
+                } else {
+                    console.error("No se encontró el objeto 'convenio' o no tiene un nombre.");
+                    alert("Error: No se encontró el nombre del convenio para redirigir.");
+                }
+            });
+        </script>
     <script> 
         document.addEventListener("DOMContentLoaded", function() { 
             const documentosInput = document.getElementById('documentos'); 

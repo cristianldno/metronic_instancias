@@ -438,7 +438,7 @@
                     console.log("Municipio personal:", $('#municipio-persona').val());  // Comprobar el valor del municipio personal 
                     console.log("Municipio empresa:", $('#municipio-empresa').val());
                     $.ajax({ 
-                        url: '{% url "radicado_perso_juridica" %}',  // URL para enviar la solicitud SOAP 
+                        url: '{% url "dashboards:radicado_perso_juridica" %}',  // URL para enviar la solicitud SOAP 
                         type: 'POST',  // Método HTTP 
                         data: formData, 
                         contentType: false, 

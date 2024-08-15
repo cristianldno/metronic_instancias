@@ -31,6 +31,7 @@ urlpatterns = [
     path('form_prof_titu/', views.form_prof_titu, name='form_prof_titu'),
     path('form_fe_pj/', views.form_fe_pj, name='form_fe_pj'),
     path('form_fe_pn/', views.form_fe_pn, name='form_fe_pn'),
+    #path('procesar-formulario/', views.procesar_formulario, name='procesar_formulario'),
     path('crear_instancia/', views.crear_instancia, name='crear_instancia'),
     path('credenciales_webservice/', views.credenciales_webservice, name='credenciales_webservice'),
     path('generar_cabecera_soap/', views.generar_cabecera_soap, name='generar_cabecera_soap'),
@@ -49,5 +50,7 @@ urlpatterns = [
     path('radicado_repre_legal/', views.radicado_repre_legal, name='radicado_repre_legal'),
     path('imagen_banner/', views.imagen_banner, name='imagen_banner'),
     path('obtener_docs/', views.obtener_docs, name='obtener_docs'),
+    path('obtener_departamentos/', views.obtener_departamentos, name='obtener_departamentos'),
+    path('obtener_municipios/<int:departamento_id>/', views.obtener_municipios, name='obtener_municipios'),
 ]
 

@@ -364,7 +364,7 @@
                     var formData = new FormData($('#solicitud-certificado-form1')[0]);  // Para formularios con archivos 
             
                     $.ajax({ 
-                        url: '{% url "radicado_pers_nat_rut" %}',  // URL para enviar la solicitud SOAP 
+                        url: '{% url "dashboards:radicado_pers_nat_rut" %}',  // URL para enviar la solicitud SOAP 
                         type: 'POST',  // Método HTTP 
                         data: formData, 
                         contentType: false, 
